@@ -6,6 +6,7 @@ __pycache__/
 .ipynb_checkpoints/
 *.jpg
 *.png
+*.html
 models/
 notebooks/
 env/
