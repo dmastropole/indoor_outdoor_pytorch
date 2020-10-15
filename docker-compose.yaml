@@ -1,0 +1,32 @@
+version: "3.8"
+services:
+    main:
+        container_name: indoor_outdoor_main
+        image: indoor_outdoor
+        build:
+            context: .
+            dockerfile: Dockerfile
+        volumes:
+            - ./:/home/indoor_outdoor_pytorch
+    mlflow:
+        container_name: indoor_outdoor_mlflow
+        image: indoor_outdoor
+        volumes:
+            - ./:/home/indoor_outdoor_pytorch
+        expose:
+            - "5000"
+        ports:
+            - "5000:5000"
+        command: sh -c "cd bin && mlflow server --host 0.0.0.0"
+    notebook:
+        container_name: indoor_outdoor_notebook
+        image: indoor_outdoor
+        volumes:
+            - ./:/home/indoor_outdoor_pytorch
+        ports:
+            - "8888:8888"
+        depends_on:
+            - mlflow
+        environment:
+            MLFLOW_TRACKING_URI: 'http://mlflow:5000'
+        command: jupyter notebook
