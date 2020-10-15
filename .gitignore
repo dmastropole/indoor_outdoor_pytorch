@@ -10,5 +10,6 @@ models/
 notebooks/
 env/
 mlruns/
+data/
 
 !.gitkeep
