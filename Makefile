@@ -19,6 +19,8 @@ data: download-data transform-data
 test:
 	docker-compose run --rm main pytest
 
+action: build test
+
 down:
 	docker-compose down
 
