@@ -1,8 +1,12 @@
 torchvision
 jupyterlab
+ipywidgets
 pandas
 matplotlib
 dvc
 pytest
 mlflow
+kfp
+lmdb
+https://github.com/vicolab/ml-pyxis/archive/master.zip
 -e .

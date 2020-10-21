@@ -4,6 +4,7 @@ FROM pytorch/pytorch:1.6.0-cuda10.1-cudnn7-runtime
 RUN apt-get update && \
     apt-get install -y wget && \
 	apt-get install -y vim && \
+	apt-get install -y libffi-dev python-dev build-essential && \
 	apt install -y zip
 
 # Expose prts for jupyter notebooks
@@ -24,5 +25,6 @@ RUN jupyter notebook --generate-config
 RUN echo "c.NotebookApp.ip = '0.0.0.0'" >> ~/.jupyter/jupyter_notebook_config.py
 RUN echo "c.NotebookApp.allow_root = True" >> ~/.jupyter/jupyter_notebook_config.py
 RUN echo "c.NotebookApp.open_browser = False" >> ~/.jupyter/jupyter_notebook_config.py
+RUN jupyter nbextension enable --py widgetsnbextension
 
 CMD ["/bin/bash"]
